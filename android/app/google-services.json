@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "249515620615",
+    "firebase_url": "https://cofeve-18896.firebaseio.com",
+    "project_id": "cofeve-18896",
+    "storage_bucket": "cofeve-18896.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249515620615:android:18cbf885cb7e63b5",
+        "android_client_info": {
+          "package_name": "com.example.flutter_sandbox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249515620615-fpkblk3hhcq3ouuuf88vilj4fijtmrso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8qgHITwS5xrn3NMqEltfLgajU2g1Jws8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249515620615-fpkblk3hhcq3ouuuf88vilj4fijtmrso.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "249515620615-bisdub259dg7gskqove9alg1sjdgv22m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fluttersandbox"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

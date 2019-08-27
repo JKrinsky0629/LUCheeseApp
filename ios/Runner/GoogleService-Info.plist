@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>249515620615-bisdub259dg7gskqove9alg1sjdgv22m.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.249515620615-bisdub259dg7gskqove9alg1sjdgv22m</string>
+	<key>API_KEY</key>
+	<string>AIzaSyByLeYDd-E16NQStp4ysF7Pde1kB6sQOaM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>249515620615</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.fluttersandbox</string>
+	<key>PROJECT_ID</key>
+	<string>cofeve-18896</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cofeve-18896.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:249515620615:ios:3394cea65c0977a1</string>
+	<key>DATABASE_URL</key>
+	<string>https://cofeve-18896.firebaseio.com</string>
+</dict>
+</plist>

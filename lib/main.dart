@@ -1,111 +1,261 @@
-import 'package:flutter/material.dart';
+/*Joshua Krinsky
+* Main Page, contains the contents of the Home and upload images page
+* Upload image is here only temporarily once it is working it will be given
+* its own file
+*
+* */
+//all imports
+import 'package:flutter/material.dart'; //general flutter functions
+import 'package:image_picker/image_picker.dart'; //get images from gallery or photo
+import 'dart:async';
+import 'Contacts.dart';
+import 'Drawer.dart';
+import 'dart:io'; //file IO for image
+import 'package:firebase_storage/firebase_storage.dart';//firebase storage functions
+import 'SecondTasting.dart';
+import 'FirstTasting.dart';
+import 'SplashPage.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  final ThemeData themeData = ThemeData(
+    canvasColor: Color.fromRGBO(80,46,14,1.0),
+    accentColor: Color.fromRGBO(255,204,78,1.0),
+  );
+  runApp(MaterialApp(
+    home: splashPage(),
+    theme: themeData,
+  ));
+}
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+class UploadImage extends StatefulWidget{
+  UploadImageState createState() => UploadImageState();//create/ upldate state of file
+}
+class UploadImageState extends State<UploadImage>{
+  File image;
+
+  Future uploadFile() async {
+   debugPrint(image.path); //display path of image
+   final StorageReference storageReference = FirebaseStorage.instance.ref().child(image.path);
+   final StorageUploadTask uploadTask = storageReference.putFile(image);
+   await uploadTask.onComplete;
+   print('File Uploaded');
   }
-}
+  Future getImage() async{//[ick image from users gallery
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
+    setState(() {//set the temp image variable in getImage to public image
+      this.image = image;
+    });
+  }
+  Future clearImage() async{ //set image equal to null
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+      this.image = null;
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+  Widget build(BuildContext ctx){
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+      drawer: drawer(),//display drawer
+      appBar: new AppBar(//display app bar
+          backgroundColor: Color.fromRGBO(255, 204, 76, 77.8),
+          title: Text("Upload Image"),
+          leading: Builder(
+              builder: (ctx) => IconButton(//display Hawk Image
+                icon: new Image.asset('assets/images/Drawer_Image.png'),
+                onPressed: () => Scaffold.of(ctx).openDrawer(),//function to open the menu
+              )
+          ),
+        actions: <Widget>[
+          Visibility(//change the visibility of the button bc it can only clear an image of one is already
+                    //selected
+            visible: this.image!=null? true:false,
+            child: IconButton(
+              icon: Icon(Icons.clear),
+              alignment: Alignment.centerLeft,
+              onPressed: () {
+                clearImage();//make image null
+              }
+            ),
+          ),
+        ],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: Builder(builder: (ctx) => Container(
+          child: SingleChildScrollView(//app page can be scrolled
+            child: Column(
+            children: <Widget>[
+              SizedBox(
+                  child: (this.image != null)?Image.file(this.image,fit:BoxFit.fill): IconButton(
+                    icon: Image.asset('assets/images/uploadImage.png'),// display image only if not null
+                      iconSize: 512,
+                      onPressed: (){
+                        getImage();
+                      },
+                    )
+              ),
+              Visibility(
+                visible: (this.image !=null)?true:false,
+                child: FlatButton(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text("Submit Image",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 45.5,
+                    ),
+                  ),
+                  onPressed: (){
+                    uploadFile();//upload the file to Firebase storage
+                  },
+                ),
+              )
+            ],
+          ),
+          )
+        )
+      )
+    );
+  }
+}
+class Home extends StatelessWidget{
+  Widget build(BuildContext ctx){
+    return Scaffold(
+      drawer: drawer(),//display drawer
+      appBar: new AppBar(//display app bar
+        backgroundColor: Color.fromRGBO(255, 204, 76, 77.8),
+        title: Text("Home"),
+        leading: Builder(
+          builder: (ctx) => IconButton(//display hawk button
+            icon: new Image.asset('assets/images/Drawer_Image.png'),
+            onPressed: () => Scaffold.of(ctx).openDrawer(),
+          )
+        )
+      ),
+      body: SingleChildScrollView(//app page is scrollable
+        padding: EdgeInsets.all(8.0),
         child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+        children: <Widget>[
+          Card(
+            color: Colors.white,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                    height: 180.0,
+                    child: Stack(
+                      children: <Widget>[
+                        Positioned.fill(
+                          child:
+                          Image.asset('assets/images/DSC_5336.JPG',//image for the body of the card
+                              fit: BoxFit.cover),
+                        ),
+                        Positioned(//Text on the image
+                          bottom: 16.0,
+                          left: 16.0,
+                          right: 16.0,
+                          child: FittedBox(
+                              alignment: Alignment.centerLeft,
+                              child:(
+                                  Text("Second Grand Tasting",
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      fontFamily: 'Allura',
+                                    ),
+                                  )
+                              )
+                          ),
+                        )
+                      ],
+                    )
+                ),
+                ButtonTheme.bar( //text below the image
+                    child: ButtonBar(
+                      alignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        FlatButton(
+                          child: Text("May 2, 2019 - See More",
+                          style: TextStyle(
+                            fontSize: 20
+                          )),
+                          onPressed: (){
+                            Navigator.push(ctx, MaterialPageRoute(builder: (ctx) => SecondTasting()));
+                          },
+                        )
+                      ],
+                    )
+                )
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+          ),
+          Card(
+            color: Colors.white,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 180.0,
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned.fill(
+                        child:
+                          Image.asset('assets/images/DSC_6326.JPG',
+                          fit: BoxFit.cover),
+                      ),
+                      Positioned(
+                        bottom: 16.0,
+                        left: 16.0,
+                        right: 16.0,
+                        child: FittedBox(
+                          alignment: Alignment.centerLeft,
+                          child:(
+                            Text("First Grand Tasting",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontFamily: 'Allura',
+                            ),
+                            )
+                          )
+                        ),
+                      )
+                    ],
+                  )
+                ),
+                ButtonTheme.bar(
+                  child: ButtonBar(
+                    alignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      FlatButton(
+                        child: Text("Dec. 07, 2018 - See More",
+                        style: TextStyle(
+                          fontSize: 20
+                        ),),
+                        onPressed: (){
+                          Navigator.push(ctx, MaterialPageRoute(builder: (ctx) => FirstTasting()));
+                        },
+                      )
+                    ],
+                  )
+                )
+              ],
             ),
-          ],
+          ),
+        ],
+      ),
+      )
+    );
+  }
+}
+class Contact extends StatelessWidget {
+  Widget build(BuildContext ctx){
+    return Scaffold(
+      drawer: drawer(),//display drawer
+      appBar: new AppBar(//display app bar
+        backgroundColor: Color.fromRGBO(255, 204, 76, 77.8),
+        title: Text("Contacts"),
+        leading: Builder(
+            builder: (ctx) => IconButton(
+              icon: new Image.asset('assets/images/Drawer_Image.png'),
+              onPressed: () => Scaffold.of(ctx).openDrawer(),
+            )
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        body: Contacts(),//display contacts
     );
   }
 }
