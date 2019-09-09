@@ -73,7 +73,7 @@ class CuttingBoardState extends State<CuttingBoard>{
   @override
   initMembers() {
     setState(() {
-      Member.membersList[0] = (new Member("Nicole ElCharr", 'assets/images/NicoleElChaar.jpg' ,"Director of Event Planning"));
+      Member.membersList[0] = (new Member("Nicole ElChaar", 'assets/images/NicoleElChaar.jpg' ,"Director of Event Planning"));
       Member.membersList[1] =(new Member("[Redacted]", 'assets/images/redacted.png' ,"Director of Counterintelligence & [Redacted] Operations"));
       Member.membersList[2] =(new Member("Andrew MacCausland", 'assets/images/AndrewM.jpg' ,"Cheese Financial Officer"));
       Member.membersList[3] =(new Member("Kyle Rifkin", 'assets/images/KyleRifkin.png' ,"Associate Director of Meme Distribution"));

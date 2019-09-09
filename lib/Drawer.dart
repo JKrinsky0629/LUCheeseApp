@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:Cofeve/main.dart';
 import 'CuttingBoard.dart';
+import 'Suggestions.dart';
 import 'FavoritesList.dart';
 
 class drawer extends StatelessWidget {
@@ -50,7 +51,7 @@ class drawer extends StatelessWidget {
                     ctx, MaterialPageRoute(builder: (ctx) => Contact()));
               }
           ),
-          ListTile(
+          /*ListTile(
               title: Text("Upload Image",
                 style: TextStyle(
                     color: Colors.white
@@ -63,7 +64,7 @@ class drawer extends StatelessWidget {
                 Navigator.push(
                     ctx, MaterialPageRoute(builder: (ctx) => UploadImage()));
               }
-          ),
+          ),*/
           ListTile(
               title: Text("Favorites",
                 style: TextStyle(
@@ -92,6 +93,20 @@ class drawer extends StatelessWidget {
                     ctx, MaterialPageRoute(builder: (ctx) => CuttingBoard()));
               }
           ),
+          ListTile(
+              title: Text("Suggestions",
+                style: TextStyle(
+                    color: Colors.white
+                ),
+              ),
+              leading: Icon(Icons.comment,
+                color: Colors.white,
+              ),
+              onTap: () {
+                Navigator.push(
+                    ctx, MaterialPageRoute(builder: (ctx) => Suggestions()));
+              }
+          )
         ],
       ),
     );

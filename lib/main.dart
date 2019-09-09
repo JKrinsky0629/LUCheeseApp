@@ -2,8 +2,10 @@
 * Main Page, contains the contents of the Home and upload images page
 * Upload image is here only temporarily once it is working it will be given
 * its own file
-*
+*TODO: add upcoming events with firebase cloud storage, and add list builder for each item
+*TODO: fix photo upload with firebase Storage (unlikely but hey, it could happen), not neccessary!!!
 * */
+
 //all imports
 import 'package:flutter/material.dart'; //general flutter functions
 import 'package:image_picker/image_picker.dart'; //get images from gallery or photo
@@ -27,7 +29,7 @@ void main() {
   ));
 }
 
-class UploadImage extends StatefulWidget{
+/*class UploadImage extends StatefulWidget{
   UploadImageState createState() => UploadImageState();//create/ upldate state of file
 }
 class UploadImageState extends State<UploadImage>{
@@ -114,7 +116,7 @@ class UploadImageState extends State<UploadImage>{
       )
     );
   }
-}
+}*/
 class Home extends StatelessWidget{
   Widget build(BuildContext ctx){
     return Scaffold(
