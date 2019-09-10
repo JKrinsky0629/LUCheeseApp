@@ -8,12 +8,11 @@
 
 //all imports
 import 'package:flutter/material.dart'; //general flutter functions
-import 'package:image_picker/image_picker.dart'; //get images from gallery or photo
-import 'dart:async';
+//import 'package:image_picker/image_picker.dart'; //get images from gallery or photo; part of image upload
+//import 'dart:async'; part of image uploader
 import 'Contacts.dart';
 import 'Drawer.dart';
-import 'dart:io'; //file IO for image
-import 'package:firebase_storage/firebase_storage.dart';//firebase storage functions
+//import 'dart:io';  part of image uploader//file IO for image
 import 'SecondTasting.dart';
 import 'FirstTasting.dart';
 import 'SplashPage.dart';
