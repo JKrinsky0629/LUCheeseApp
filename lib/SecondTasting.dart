@@ -6,9 +6,9 @@ class SecondTasting extends StatefulWidget{
 }
 
 class SecondTastingState extends State<SecondTasting>{
-List<bool> _saved2 = List<bool>.generate(11,
-(i) => false,
-);
+  List<bool> _saved2 = List<bool>.generate(11,
+    (i) => false,
+  );
 static var stats2;
 initSecondData() async{
   stats2 = await SharedPreferences.getInstance();

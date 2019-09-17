@@ -7,7 +7,7 @@ class FirstTasting extends StatefulWidget{
 
 class FirstTastingState extends State<FirstTasting>{
   static List<bool> _saved = List<bool>.generate(7,
-  (i) => false,
+    (i) => false,
   );
   static var stats;
   initData() async {
@@ -25,11 +25,11 @@ class FirstTastingState extends State<FirstTasting>{
   changeData(int a)async{
     stats = await SharedPreferences.getInstance();
     setState(() {
-      if(stats.getBool('saved$a')) {
+      if(_saved[a]) {
         stats.setBool('saved$a', false);
         _saved[a] = stats.get('saved$a');
       }
-      else if(!stats.getBool('saved$a')) {
+      else if(!_saved[a]) {
         stats.setBool('saved$a', true);
         _saved[a] = stats.get('saved$a');
       }
