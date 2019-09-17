@@ -1,4 +1,4 @@
-package com.example.flutter_sandbox;
+package lehigh.cheese.flutter_sandbox;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

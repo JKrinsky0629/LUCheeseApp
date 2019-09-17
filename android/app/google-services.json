@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:249515620615:android:18cbf885cb7e63b5",
         "android_client_info": {
-          "package_name": "edu.lehigh.Covfefe"
+          "package_name": "lehigh.cheese.flutter_sandbox"
         }
       },
       "oauth_client": [
@@ -35,7 +35,7 @@
               "client_id": "249515620615-bisdub259dg7gskqove9alg1sjdgv22m.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.fluttersandbox"
+                "bundle_id": "lehigh.cheese.flutter_sandbox"
               }
             }
           ]
