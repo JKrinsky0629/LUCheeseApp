@@ -23,6 +23,7 @@ void main() {
     accentColor: Color.fromRGBO(255,204,78,1.0),
   );
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     home: splashPage(),
     theme: themeData,
   ));
