@@ -1,17 +1,10 @@
-# flutter_sandbox
+# Lehigh Cheese App
 
-Dandbox to test out flutter features
+Lehigh Cheese app is now officially up on the IOS and Google play store
+This is a place for Lehigh students to learn about the Cheese club on campus and
+suggest cheese for future tastings, A big thanks to everyone who helped to build the app
+Contributors:
+    Joshua Krinsky
+    Michael Bentley
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
-"# LUCheeseApp" 
+"# LUCheeseApp"
